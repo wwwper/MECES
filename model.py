@@ -12,7 +12,7 @@ from dataclasses import dataclass
 
 @dataclass
 class MultiModalConfig:
-    """多模态模块配置类，集中管理超参数"""
+    """多模态模块配置类"""
     video_feat_dim: int = 768
     audio_feat_dim: int = 1024
     fusion_hidden_dim: int = 768
@@ -61,7 +61,6 @@ class MultiScaleIntegrator(nn.Module):
 class MultiScaleFusion(nn.Module):
     """
     多尺度融合模块 (Mixture of Scales)。
-    包含多个不同瓶颈大小的 '专家' 网络，并通过积分器融合。
     """
 
     def __init__(self, input_dim: int, output_dim: int, config: MultiModalConfig):
@@ -90,7 +89,7 @@ class MultiScaleFusion(nn.Module):
         Args:
             x: shape [batch, input_dim]
         """
-        # 鲁棒性处理：处理单个样本输入的情况
+        # 处理单个样本输入的情况
         if x.dim() == 1:
             x = x.unsqueeze(0)
 
@@ -176,7 +175,6 @@ class ChatGLMForMultimodal(nn.Module):
         假设列表结构为 [Video1, Audio1, Video2, Audio2, ...]
         """
         if len(raw_features) % 2 != 0:
-            # 实际生产中应记录日志而非直接崩坏，视具体需求而定
             raise ValueError(f"Raw features length must be even (pairs of video/audio), got {len(raw_features)}")
 
         fused_tokens = []
@@ -200,8 +198,6 @@ class ChatGLMForMultimodal(nn.Module):
             raise ValueError("Processed sample resulted in no tokens.")
 
         # 将列表堆叠为 Tensor: [num_pairs, output_dim]
-        # 注意：原代码这里的维度处理较为隐晦，这里明确为 [num_tokens, dim]
-        # 这里的 num_pairs 对应 context 中的 token 数量
         return torch.cat(fused_tokens, dim=0)
 
     def forward(
@@ -209,7 +205,7 @@ class ChatGLMForMultimodal(nn.Module):
             input_ids: torch.Tensor,
             labels: torch.Tensor,
             raw_multimodal_features: List[List[torch.Tensor]],
-            modality_types: List[str],  # 保留接口兼容性，虽然当前逻辑主要依赖 list 顺序
+            modality_types: List[str], 
             multimodal_indices: torch.Tensor,
             **kwargs
     ):
@@ -262,8 +258,6 @@ class ChatGLMForMultimodal(nn.Module):
 
         else:
             # 处理无多模态输入的 Corner Case
-            # 此时需要构建一个空的 tensor 或者根据底层模型要求处理
-            # 这里保持原逻辑抛出错误，或者可以返回 None
             raise ValueError("No multimodal features provided.")
 
         # 3. 调用底层 LLM_model
