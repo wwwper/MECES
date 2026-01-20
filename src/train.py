@@ -135,19 +135,19 @@ def main():
         lora_alpha=model_args.lora_alpha,
         lora_dropout=model_args.lora_dropout,
     )
-    # 仅对 Transformer 部分应用 LoRA，并确保移动到 GPU
-    model.transformer = get_peft_model(model.transformer, peft_config).to("cuda")
+    # 仅对 LLM 部分应用 LoRA，并确保移动到 GPU
+    model.LLM = get_peft_model(model.LLM, peft_config).to("cuda")
     
     # 打印可训练参数情况
-    model.transformer.print_trainable_parameters()
+    model.LLM.print_trainable_parameters()
 
     # 6. 模型训练特定设置 (Gradient Checkpointing & Precision)
-    model.transformer.enable_input_require_grads()
-    model.transformer.is_parallelizable = True
-    model.transformer.model_parallel = True
+    model.LLM.enable_input_require_grads()
+    model.LLM.is_parallelizable = True
+    model.LLM.model_parallel = True
     # 确保输出层精度正确
-    model.transformer.lm_head = CastOutputToFloat(model.transformer.transformer.output_layer)
-    model.transformer.config.use_cache = False
+    model.LLM.lm_head = CastOutputToFloat(model.LLM.transformer.output_layer)
+    model.LLMmodel.LLM.config.use_cache = False
 
     # 加载数据集
     logger.info("Loading training dataset...")
@@ -189,7 +189,7 @@ def main():
         logger.info(f"Resuming from checkpoint: {training_args.resume_from_checkpoint}")
     
     # 二次确保梯度设置（有些模型在 Trainer init 后会重置）
-    model.transformer.enable_input_require_grads()
+    model.LLM.enable_input_require_grads()
 
     trainer.train(resume_from_checkpoint=training_args.resume_from_checkpoint)
     
