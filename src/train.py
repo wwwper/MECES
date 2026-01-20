@@ -24,10 +24,10 @@ from peft import (
 )
 
 # 本地模块导入
-from multimodal_trainer import LoRATrainer
-from multimodal_arguments import ModelArguments, DataTrainingArguments
-from multimodal_preprocess_utils import sanity_check, InputOutputDataset
-from multimodal_datacollator import MultimodalDataCollator
+from trainer import LoRATrainer
+from arguments import ModelArguments, DataTrainingArguments
+from preprocess_utils import sanity_check, InputOutputDataset
+from datacollator import MultimodalDataCollator
 from model import ChatGLMForMultimodal
 
 # 设置日志格式
