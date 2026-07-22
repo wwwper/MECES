@@ -1,10 +1,18 @@
+<div align="center">
+
 # Locate and Explain: Joint Multimodal Emotion Cause Extraction and Summarization in Conversation
 
 [![Paper](https://img.shields.io/badge/Paper-ACL%202026-b31b1b.svg)](https://aclanthology.org/2026.acl-long.2012/)
-<img width="600" height="300" alt="image" src="https://github.com/user-attachments/assets/888151d8-8ce8-42db-b481-28e81c36300e" /><div align="center">
+
+<img src="https://github.com/user-attachments/assets/888151d8-8ce8-42db-b481-28e81c36300e" width="720" alt="Overview of MPF-LLM">
+
+<p><em>Figure: MPF-LLM 框架总览</em></p>
+
 📄 [**Paper**](https://aclanthology.org/2026.acl-long.2012/) &nbsp;|&nbsp; 📊 [**Dataset (MECESD)**](#-数据集-mecesd) &nbsp;|&nbsp; 🚀 [**Quick Start**](#-安装) &nbsp;|&nbsp; 📝 [**Citation**](#-引用-citation)
 
 </div>
+
+---
 
 ---
 
