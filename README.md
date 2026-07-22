@@ -2,12 +2,7 @@
 
 # Locate and Explain: Joint Multimodal Emotion Cause Extraction and Summarization in Conversation
 
-**MPF-LLM** — 面向联合多模态情绪-原因抽取与概括（MECES）任务的 LLM 微调框架
-
 [![Paper](https://img.shields.io/badge/Paper-ACL%202026-b31b1b.svg)](https://aclanthology.org/2026.acl-long.2012/)
-[![Conference](https://img.shields.io/badge/Venue-ACL%202026%20(Long)-4b44ce.svg)](https://aclanthology.org/2026.acl-long.2012/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
-[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 
 📄 [**Paper**](https://aclanthology.org/2026.acl-long.2012/) &nbsp;|&nbsp; 📊 [**Dataset (MECESD)**](#-数据集-mecesd) &nbsp;|&nbsp; 🚀 [**Quick Start**](#-安装) &nbsp;|&nbsp; 📝 [**Citation**](#-引用-citation)
 
@@ -15,7 +10,7 @@
 
 ---
 
-本仓库是论文 **《Locate and Explain: Joint Multimodal Emotion Cause Extraction and Summarization in Conversation》**（ACL 2026, Long Papers）的官方实现，包含 **MECES 任务**、**MECESD 数据集** 以及 **MPF-LLM 模型** 的完整训练与推理代码。
+本仓库是论文 **《Locate and Explain: Joint Multimodal Emotion Cause Extraction and Summarization in Conversation》**（ACL 2026, Long Papers）的官方实现，包含**MECESD 数据集** 以及 **MPF-LLM 模型** 的完整训练与推理代码。
 
 > **作者**：Jikun Wan, Chen Gong\*, Guohong Fu &nbsp;(\* 通讯作者)
 > **单位**：苏州大学 人工智能研究院 / 计算机科学与技术学院
@@ -27,30 +22,6 @@ MPF-LLM 的核心思路：在文本 prompt 中插入多模态占位符（`<video
 - **2026-07** 论文被 **ACL 2026** 接收（Volume 1: Long Papers, pp. 43472–43489）。
 - 数据集与代码整理发布中。
 
-## 🔍 概览 Overview
-
-**MECES（joint Multimodal Emotion Cause Extraction and Summarization）** 任务：给定一段多模态对话与一个非中性情绪的目标话语，模型需要 (1) 从对话中**抽取出触发该情绪的原因话语**（定位 / Locate），并 (2) **生成一段对原因的自然语言概括**（解释 / Explain），从而兼具「精确定位」与「可解释性」。
-
-```
-        文本 prompt (对话上下文 + 任务指令，含占位符)
-                │
-     ┌──────────┴───────────┐
-     │                      │
- LLM 词向量 embedding   预抽取多模态特征 (.pt)
-     │              (视觉: CLIP ViT-L / 音频: HuBERT-L)
-     │                      │
-     │        MLF 逐话语融合 (video + audio → 1 伪 token)
-     │                      │
-     └──────► 在占位符位置注入伪 token ◄──┘
-                │
-        LLM backbone (ChatGLM3-6B) + LoRA
-                │
-     统一序列生成：Cause Utterances (定位) + Cause Summary (解释)
-```
-
-- `MPF_LLM`：复合模型，外层封装 backbone + 融合模块，负责多模态融合与注入。
-- `MultiModal_MLF`：多层级融合（Multi-Level Fusion, MLF）。对每条话语，先对视频/音频特征做 Mean Pooling 并投影到统一空间、逐元素相加，再经三路不同维度 MLP 与 1×1 卷积压缩，输出映射到 LLM 输入维度的**单个伪 token**。
-- 训练时**冻结 LLM backbone 与所有单模态编码器**，只微调 **LoRA 适配器**、**Projector** 与 **MLF 融合模块**；LoRA 与融合模块分开保存（`adapter_model.*` 与 `fusion_module.pt`）。
 
 ## 📊 数据集 MECESD
 
