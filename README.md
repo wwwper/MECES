@@ -4,7 +4,7 @@
 
 [![Paper](https://img.shields.io/badge/Paper-ACL%202026-b31b1b.svg)](https://aclanthology.org/2026.acl-long.2012/)
 
-📄 [**Paper**](https://aclanthology.org/2026.acl-long.2012/) &nbsp;|&nbsp; 📊 [**Dataset (MECESD)**](#-数据集-mecesd) &nbsp;|&nbsp; 🚀 [**Quick Start**](#-安装) &nbsp;|&nbsp; 📝 [**Citation**](#-引用-citation)
+📄 [**Paper**](https://aclanthology.org/2026.acl-long.2012/) &nbsp;|&nbsp; 📊 [**Dataset (MECESD)**](#-数据集-mecesd) &nbsp;|&nbsp; 🚀 [**Quick Start**](## ⚙️ 安装) &nbsp;|&nbsp; 📝 [**Citation**](#-引用-citation)
 
 </div>
 
