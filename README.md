@@ -4,7 +4,7 @@
 
 [![Paper](https://img.shields.io/badge/Paper-ACL%202026-b31b1b.svg)](https://aclanthology.org/2026.acl-long.2012/)
 
-📄 [**Paper**](https://aclanthology.org/2026.acl-long.2012/) &nbsp;|&nbsp; 📊 [**Dataset (MECESD)**](#-数据集-mecesd) &nbsp;|&nbsp; 🚀 [**Quick Start**](## ⚙️ 安装) &nbsp;|&nbsp; 📝 [**Citation**](#-引用-citation)
+📄 [**Paper**](https://aclanthology.org/2026.acl-long.2012/) &nbsp;|&nbsp; 📊 [**Dataset (MECESD)**](#-数据集-mecesd) &nbsp;|&nbsp; 🚀 [**Quick Start**](##-Quick-Start) &nbsp;|&nbsp; 📝 [**Citation**](#-引用-citation)
 
 </div>
 
@@ -39,6 +39,7 @@
 
 最终目录组织见下方[数据准备](#-数据准备)。
 
+
 ## 📁 目录结构
 
 ```
@@ -62,7 +63,7 @@ MPF-LLM/
         ├── fusion.py          # Integrating / MultiScaleFusion / MultiModal_MLF
         └── modeling_mpf_llm.py# MPF_LLM 复合模型
 ```
-
+🚀 [**Quick Start**]
 ## ⚙️ 安装
 
 ```bash
