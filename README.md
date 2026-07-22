@@ -116,7 +116,7 @@ torchrun --nproc_per_node=2 -m mpf_llm.train \
 
 **默认超参**（对应论文 Appendix A.10）：Epochs = 3，Learning Rate = 1e-4，Per-device Batch Size = 1，Gradient Accumulation = 4（有效 batch = 8），LoRA `r = 8`、`α = 32`、`dropout = 0.1`；默认上下文窗口 window(8, 3)。实验在 32GB V100 / 40GB A100 上完成。
 
-## 🔮 推理与评估
+## 推理与评估
 
 ```bash
 bash scripts/infer_meca.sh
