@@ -33,8 +33,6 @@
 # <此处填写你的数据集下载链接，例如 Google Drive / 百度网盘 / HuggingFace Datasets>
 ```
 
-最终目录组织见下方[数据准备](#-数据准备)。
-
 
 ## 📁 目录结构
 
@@ -47,7 +45,7 @@ MPF-LLM/
 ├── scripts/
 │   ├── train_meca.sh          # 训练启动脚本
 │   └── infer_meca.sh          # 推理启动脚本
-└── mpf_llm/                    # 主包
+└── mpf_llm/                   
     ├── arguments.py           # ModelArguments / DataTrainingArguments
     ├── trainer.py             # LoRATrainer（自定义 compute_loss 与 save_model）
     ├── train.py               # 训练入口（python -m mpf_llm.train）
