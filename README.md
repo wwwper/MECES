@@ -18,13 +18,6 @@
 > **作者**：Jikun Wan, Chen Gong\*, Guohong Fu &nbsp;(\* 通讯作者)
 > **单位**：苏州大学 人工智能研究院 / 计算机科学与技术学院
 
-
-## 📢 News
-
-- **2026-07** 论文被 **ACL 2026** 接收（Volume 1: Long Papers, pp. 43472–43489）。
-- 数据集与代码整理发布中。
-
-
 ## 📊 数据集 MECESD
 
 **MECESD** 是首个**同时**为情绪原因**抽取**与**总结**标注的多模态对话数据集。其标注以心理学中的 **ABC 理论**（Activating events–Beliefs–Consequences，Ellis, 1957）为指导，从「激发事件」与「信念」双重视角刻画情绪成因，从而提升标注的全面性与一致性。
