@@ -12,7 +12,6 @@
 
 ---
 
----
 
 本仓库是论文 **《Locate and Explain: Joint Multimodal Emotion Cause Extraction and Summarization in Conversation》**（ACL 2026, Long Papers）的官方实现，包含**MECESD 数据集** 以及 **MPF-LLM 模型** 的完整训练与推理代码。
 
