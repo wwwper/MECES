@@ -15,7 +15,6 @@
 > **作者**：Jikun Wan, Chen Gong\*, Guohong Fu &nbsp;(\* 通讯作者)
 > **单位**：苏州大学 人工智能研究院 / 计算机科学与技术学院
 
-MPF-LLM 的核心思路：在文本 prompt 中插入多模态占位符（`<video_placeholder>` / `<audio_placeholder>`），用一个**多层级融合模块（MLF, Multi-Level Fusion）**把预抽取的视频、音频特征逐话语（utterance）融合成一个伪 token，注入到 LLM 的词向量序列中，再以 **LoRA** 微调，以统一的序列生成方式**同时完成情绪-原因话语的定位（Locate）与原因概括的生成（Explain）**。LLM backbone 默认使用 ChatGLM3-6B，但设计上不绑定特定 backbone。
 
 ## 📢 News
 
@@ -25,27 +24,7 @@ MPF-LLM 的核心思路：在文本 prompt 中插入多模态占位符（`<video
 
 ## 📊 数据集 MECESD
 
-**MECESD** 是首个**同时**为情绪原因**抽取**与**概括**标注的多模态对话数据集。其标注以心理学中的 **ABC 理论**（Activating events–Beliefs–Consequences，激发事件–信念–结果；Ellis, 1957）为指导，从「激发事件」与「信念」双重视角刻画情绪成因，从而提升标注的全面性与一致性（Cohen's kappa = 0.7511，高于 ECF 与 MECAD）。
-
-- **数据来源**：基于公开的 **M3ED** 中文多模态对话数据集，经过话语语义合并、文本纠错与多模态时间戳对齐等预处理构建。
-- **模态**：文本（T）/ 音频（A）/ 视觉（V）。
-- **情绪类别**：Happy、Surprise、Anger、Disgust、Fear、Sad。
-- **标注方式**：Gemini-2.5-Pro 机器预标注 + 多人人工双重校验（专家仲裁分歧）。
-
-### 数据统计
-
-| Statistics | Train | Val | Test | Total |
-| :-- | --: | --: | --: | --: |
-| #Dialogues | 546 | 78 | 157 | 781 |
-| #Utterances | 7,126 | 977 | 2,033 | 10,136 |
-| w/ Cause | 4,039 | 583 | 1,165 | 5,787 |
-| w/ Multi-cause | 176 | 24 | 53 | 253 |
-| #Emotion-Cause Pairs | 8,568 | 1,228 | 2,435 | 12,231 |
-| Avg. Utterances / Dialogue | 13.05 | 12.52 | 12.94 | 12.97 |
-| Avg. Utterance Length | 14.95 | 15.87 | 15.05 | 15.06 |
-| Avg. Summary Length | 38.72 | 40.49 | 38.88 | 38.93 |
-
-> 划分比例约 7 : 1 : 2；概括长度按中文字符数统计。共 5,787 条带原因标注的话语、12,231 个情绪-原因对、6,040 条原因概括，其中 253 条话语拥有多条有效原因概括（多参考）。
+**MECESD** 是首个**同时**为情绪原因**抽取**与**总结**标注的多模态对话数据集。其标注以心理学中的 **ABC 理论**（Activating events–Beliefs–Consequences，Ellis, 1957）为指导，从「激发事件」与「信念」双重视角刻画情绪成因，从而提升标注的全面性与一致性。
 
 ### 获取数据集
 
