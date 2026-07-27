@@ -10,7 +10,7 @@ def chinese_char_tokenizer(text: str) -> str:
     return " ".join(list(text))
 
 pred =[]
-with open('../../Paper_experiment/results/pred/RAG_(Simple_data)MECA_chatglm_(0,8,3)_V100_Text_model_modify_output.json', 'r', encoding='utf-8') as file:
+with open('../results/pred/MECES_pred.json', 'r', encoding='utf-8') as file:
     pred_data = json.load(file)
     for i in range(0, len(pred_data)):
         for j in range(0, len(pred_data[i]["dialog"])):
@@ -18,7 +18,7 @@ with open('../../Paper_experiment/results/pred/RAG_(Simple_data)MECA_chatglm_(0,
                 pred_data.append(pred_data[i]["dialog"][j]["Cause_summary"][0])
 
 ref =[]
-with open('./mpf_llm/dataset/MECESD_test.json', 'r', encoding='utf-8') as file:
+with open('../mpf_llm/dataset/MECESD_test.json', 'r', encoding='utf-8') as file:
     ref_data = json.load(file)
     for i in range(0, len(ref_data)):
         for j in range(0, len(ref_data[i]["dialog"])):
