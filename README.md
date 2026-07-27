@@ -66,16 +66,16 @@ python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-> ChatGLM3-6B 对 `transformers` 版本较敏感，若加载报错请优先调整该版本。
+> 环境中还有一些其它库需要安装，详细请参考代码
 
 ## 🗂️ 数据准备
 
 将数据放置于 `data/`（已在 `.gitignore` 中，不入库）：
 
-1. **训练/测试 json**：每条样本至少包含
-   - `context`：含 `<video_placeholder>` / `<audio_placeholder>` 占位符的输入文本；
-   - `target`：期望输出文本（原因话语索引 + 原因概括）；
-   - `multimodal_features_key_list`：占位符对应的特征 key 列表（顺序与占位符一致，one-token 版本每个 key 对应 1 个占位符）。
+1. **训练/验证/测试 json**：每条样本至少包含
+   - `context`；
+   - `target`；
+   - `multimodal_features_key_list`：占位符对应的特征 key 列表（顺序与占位符一致）。
 2. **多模态特征 `.pt`**：`video_features.pt` / `audio_features.pt`，均为 `{key: tensor}` 字典，`key` 与上面的 `multimodal_features_key_list` 对应。视觉/音频特征分别由 **CLIP ViT-L** 与 **HuBERT-L** 预抽取。
 
 ```
@@ -93,28 +93,7 @@ data/
 ```bash
 bash scripts/train_meca.sh
 ```
-
-或直接调用（从仓库根目录）：
-
-```bash
-torchrun --nproc_per_node=2 -m mpf_llm.train \
-    --train_format input-output \
-    --train_file ./data/meca_train.json \
-    --video_features_path ./data/features/video_features.pt \
-    --audio_features_path ./data/features/audio_features.pt \
-    --model_name_or_path THUDM/chatglm3-6b-base \
-    --output_dir ./checkpoints/meca_mlf \
-    --per_device_train_batch_size 1 \
-    --gradient_accumulation_steps 4 \
-    --num_train_epochs 3 \
-    --learning_rate 1e-4 \
-    --remove_unused_columns False \
-    --fp16 --gradient_checkpointing
-```
-
-产物保存在 `output_dir`：LoRA 适配器、`fusion_module.pt`、tokenizer、训练参数。
-
-**默认超参**（对应论文 Appendix A.10）：Epochs = 3，Learning Rate = 1e-4，Per-device Batch Size = 1，Gradient Accumulation = 4（有效 batch = 8），LoRA `r = 8`、`α = 32`、`dropout = 0.1`；默认上下文窗口 window(8, 3)。实验在 32GB V100 / 40GB A100 上完成。
+**默认超参**（对应论文 Appendix A.10）：Epochs = 3，Learning Rate = 1e-4，Per-device Batch Size = 1，Gradient Accumulation = 4，LoRA `r = 8`、`α = 32`、`dropout = 0.1`；默认上下文窗口 window(8, 3)。实验在 32GB V100 / 40GB A100 上完成。
 
 ## 推理与评估
 
@@ -122,25 +101,13 @@ torchrun --nproc_per_node=2 -m mpf_llm.train \
 bash scripts/infer_meca.sh
 ```
 
-或：
-
-```bash
-python -m mpf_llm.inference \
-    --model THUDM/chatglm3-6b-base \
-    --lora_path ./checkpoints/meca_mlf/checkpoint-1581 \
-    --video_features_path ./data/features/video_features.pt \
-    --audio_features_path ./data/features/audio_features.pt \
-    --ecp_test_path ./data/meca_test.json \
-    --gold_emo_path ./data/meca_test_gold.json \
-    --save_pred_path ./results/meca_mlf_pred.json
-```
-
 **评估指标**：MECE 子任务采用加权平均 **F1**；MECS 子任务采用 **BLEU-2 / BLEU-4 / METEOR / ROUGE-L**（词面重叠）以及 **BERTScore / Sentence-BERT**（语义相似度）。
+其中词面重叠指标使用 [nlg-eval](https://github.com/Maluuba/nlg-eval) 计算 BLEU、METEOR、ROUGE-L等指标。
+BERTScore使用bert-base-chinese模型(中文语料中评估表现最好的，详细参考https://github.com/Tiiiger/bert_score)，Sentence-BERT使用paraphrase-multilingual-MiniLM-L12-v2。详细请参考代码
 ## 💡 说明与注意事项
 
-- **backbone 要求**：`MPF_LLM.forward` 依赖一个被改造过、可接收 `multimodal_embeddings` 与 `multimodal_indices` 的 LLM。若更换 backbone，需要相应改造其 embedding 注入逻辑。
-- **batch 语义**：当前对 `per_device_train_batch_size=1` 完全正确；大于 1 且各样本多模态 token 数不同时，需要 backbone 忽略 `index == -1` 的填充位。
-- **权重文件命名**：融合模块保存为 `fusion_module.pt`（旧版本名为 `qformer.pt`，如复用旧 checkpoint 重命名即可）。
+- **backbone 要求**：若更换 backbone，需要相应改造其 embedding 注入/替换逻辑，由于chatglm的模型的generate方法不支持embedding输入，所以我们修改了对应的modeling_chatglm.py文件，对于其它LLM backbone可以直接通过传入inputs_embeds进行Embedding替换。
+
 
 ## 📝 引用 Citation
 
