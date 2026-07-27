@@ -1,11 +1,3 @@
-"""
-多模态 LoRA 微调入口。
-
-运行 (从仓库根目录):
-    torchrun --nproc_per_node=2 -m mpf_llm.train --train_file ... --output_dir ...
-或参见 scripts/train_meca.sh
-"""
-
 import json
 import logging
 import os
