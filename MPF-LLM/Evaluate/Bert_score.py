@@ -24,7 +24,7 @@ def calculate_bertscore(candidate, reference, model_type=bert_path, lang='zh'):
 
 pred =[]
 # 请确保这里的路径是正确的
-with open('./results/pred/', 'r', encoding='utf-8') as file:
+with open('../results/pred/MECES_pred.json', 'r', encoding='utf-8') as file:
     pred_data = json.load(file)
     for i in range(0, len(pred_data)):
         for j in range(0, len(pred_data[i]["dialog"])):
@@ -34,7 +34,7 @@ with open('./results/pred/', 'r', encoding='utf-8') as file:
 ref =[]
 
 
-with open('./mpf_llm/dataset/MECESD_test.json', 'r', encoding='utf-8') as file:
+with open('../mpf_llm/dataset/MECESD_test.json', 'r', encoding='utf-8') as file:
     ref_data = json.load(file)
     for i in range(0, len(ref_data)):
         for j in range(0, len(ref_data[i]["dialog"])):
