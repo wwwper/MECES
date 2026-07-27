@@ -22,7 +22,7 @@ This repository is the **official implementation** of the paper **"Locate and Ex
 
 **MECESD** is the **first** multimodal conversational dataset annotated for **both** emotion-cause **extraction** and **summarization**.
 
-Its annotation is guided by the psychological **ABC theory** — **A**ctivating events, **B**eliefs, **C**onsequences (Ellis, 1957) — which characterizes the causes of an emotion from the dual perspectives of *activating events* and *beliefs*. This dual view improves both the **comprehensiveness** and the **consistency** of the annotation.
+Its annotation is guided by the psychological **ABC theory**  — which characterizes the causes of an emotion from the dual perspectives of *activating events* and *beliefs*. This dual view improves both the **comprehensiveness** and the **consistency** of the annotation.
 
 ### Getting the Dataset
 
