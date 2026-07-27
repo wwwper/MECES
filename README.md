@@ -26,7 +26,7 @@
 
 > ⚠️ **使用许可**：MECESD 仅限**非商业学术研究**用途，禁止任何商业或非学术使用。
 
-如果需要下载数据集对应的视频，或者直接使用提取的视频、音频特征放入 dataset/multimodal_features文件路径，请通过邮件联系我们，并填写相应的许可条款。
+**如果需要下载数据集对应的视频，或者直接使用提取的视频、音频特征放入 dataset/multimodal_features文件路径，请通过邮件联系我们，并填写相应的许可条款。**
 
 
 ## ⚙️ 安装
@@ -40,21 +40,23 @@ pip install -r requirements.txt
 > 环境中还有一些其它库需要安装，详细请参考代码
 
 ## 🗂️ 数据准备
+数据放置于 `dataset/`文件路径下
 
-将数据放置于 `data/`（已在 `.gitignore` 中，不入库）：
-
-1. **训练/验证/测试 json**：每条样本至少包含
+1. **通过data/bulid_finetune_dataset.py构建 训练/验证/测试 的微调数据**：每条样本至少包含
    - `context`；
    - `target`；
    - `multimodal_features_key_list`：占位符对应的特征 key 列表（顺序与占位符一致）。
-2. **多模态特征 `.pt`**：`video_features.pt` / `audio_features.pt`，均为 `{key: tensor}` 字典，`key` 与上面的 `multimodal_features_key_list` 对应。视觉/音频特征分别由 **CLIP ViT-L** 与 **HuBERT-L** 预抽取。
+2. **下载的多模态特征 `.pt` ，**：`video_features.pt` / `audio_features.pt`，均为 `{key: tensor}` 字典，`key` 与上面的 `multimodal_features_key_list` 对应。视觉/音频特征分别由 **CLIP ViT-L** 与 **HuBERT-L** 预抽取。
 
 ```
-data/
-├── meca_train.json
-├── meca_test.json
-├── meca_test_gold.json
-└── features/
+dataset/
+├── MECESD_train.json
+├── MECESD_val.json
+├── MECESD_test.json
+└── multimodal_features/
+    ├── video_features.pt
+    └── audio_features.pt
+└── multimodal_features/
     ├── video_features.pt
     └── audio_features.pt
 ```
