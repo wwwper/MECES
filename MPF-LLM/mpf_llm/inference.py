@@ -29,7 +29,7 @@ def str2bool(v: str) -> bool:
 
 def build_args():
     p = argparse.ArgumentParser()
-    p.add_argument("--model", type=str, default="THUDM/chatglm3-6b-base", help="base LLM 路径/标识")
+    p.add_argument("--model", type=str, default="Huggingface/chatglm3-6b-base", help="base LLM 路径/标识")
     p.add_argument("--tokenizer", type=str, default=None)
     p.add_argument("--LoRA", type=str2bool, default=True)
     p.add_argument("--lora_path", type=str, required=True, help="LoRA 适配器目录(含 checkpoint)")
