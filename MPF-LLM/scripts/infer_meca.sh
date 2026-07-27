@@ -5,7 +5,7 @@ set -ex
 export CUDA_VISIBLE_DEVICES=6
 
 BASE_MODEL_PATH="/data/wjk/chatglm3-6b-base"
-LORA_PATH="./results/model_checkpoint/checkpoint-1581"   # 含 LoRA 适配器与 fusion_module.pt
+LORA_PATH="./results/model_checkpoint/checkpoint-1581"   # 这里选择了最优的epoch=3保存的checkpoint
 VIDEO_FEATURES="./mpf_llm/dataset/multimodal_features/video_features.pt"
 AUDIO_FEATURES="./mpf_llm/dataset/multimodal_features/audio_features.pt"
 TEST_FILE="./mpf_llm/dataset/finetune_prompt_data/MECES_multimodal_test_finetune.json"
