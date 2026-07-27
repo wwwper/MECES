@@ -24,14 +24,10 @@
 
 ### 获取数据集
 
-> ⚠️ **使用许可**：MECESD 仅限**非商业学术研究**用途，禁止任何商业或非学术使用。所有标注基于公开 M3ED 数据集并已获得原始数据所有者授权。请在下载前阅读并同意相应许可条款。
+> ⚠️ **使用许可**：MECESD 仅限**非商业学术研究**用途，禁止任何商业或非学术使用。
 
-数据集将按如下方式提供（请根据实际发布情况替换链接）：
+# 如果需要下载数据集对应的视频，或者直接使用提取的视频、音频特征放入 dataset/multimodal_features文件路径，请通过邮件联系我们，并填写相应的许可条款。
 
-```bash
-# 下载数据集对应的视频，或者直接使用提取的视频、音频特征放入 dataset/multimodal_features文件路径
-# https://drive.google.com/drive/folders/1FE8XMR6n0tOraedwU2r0qmLpKD1jI94z?usp=drive_link
-```
 
 ## ⚙️ 安装
 
@@ -105,7 +101,7 @@ BERTScore使用bert-base-chinese模型(中文语料中评估表现最好的，�
 
 ## 🙏 致谢 Acknowledgements
 
-- 数据集基于 **M3ED**（Zhao et al., 2022）构建。
+- 数据集基于 **M3ED**（Zhao et al., 2022）构建，所有标注基于公开 M3ED 数据集并已获得原始数据所有者授权。
 
 
 ## 📄 License
