@@ -2,7 +2,7 @@
 # 从仓库根目录运行:  bash scripts/train_meca.sh
 set -ex
 
-export CUDA_VISIBLE_DEVICES=5,6  # 设备在此统一控制
+export CUDA_VISIBLE_DEVICES=1,2 
 
 LR=1e-4
 NUM_GPUS=2
