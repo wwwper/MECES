@@ -1,7 +1,3 @@
-"""
-多模态数据整理器 (DataCollator)。
-"""
-
 from dataclasses import dataclass
 from typing import Any, List
 
