@@ -2,9 +2,9 @@
 # 从仓库根目录运行:  bash scripts/infer_meca.sh
 set -ex
 
-export CUDA_VISIBLE_DEVICES=1
+export CUDA_VISIBLE_DEVICES=6
 
-BASE_MODEL_PATH="/data/wjk/chatglm3-6b-base"
+BASE_MODEL_PATH="Huggingface/chatglm3-6b-base"
 LORA_PATH="./results/model_checkpoint/checkpoint-1581"   # 这里选择了epoch=3保存的checkpoint
 VIDEO_FEATURES="./mpf_llm/dataset/multimodal_features/video_features.pt"
 AUDIO_FEATURES="./mpf_llm/dataset/multimodal_features/audio_features.pt"
