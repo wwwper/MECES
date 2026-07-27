@@ -5,7 +5,7 @@ import json
 
 from bert_score import score
 
-bert_path="/data/wjk/Huggingface_model/bert-base-chinese"
+bert_path="Huggingface_model/bert-base-chinese"
 def calculate_bertscore(candidate, reference, model_type=bert_path, lang='zh'):
     """计算 BERTScore F1 分数"""
     # 转换为列表形式，以适应库的输入要求
@@ -24,7 +24,7 @@ def calculate_bertscore(candidate, reference, model_type=bert_path, lang='zh'):
 
 pred =[]
 # 请确保这里的路径是正确的
-with open('../../Paper_experiment/results/pred/RAG_(Simple_data)MECA_chatglm_(0,8,3)_V100_Text_model_modify_output.json', 'r', encoding='utf-8') as file:
+with open('./results/pred/', 'r', encoding='utf-8') as file:
     pred_data = json.load(file)
     for i in range(0, len(pred_data)):
         for j in range(0, len(pred_data[i]["dialog"])):
