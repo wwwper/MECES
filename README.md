@@ -8,7 +8,7 @@
 
 <img src="https://github.com/user-attachments/assets/888151d8-8ce8-42db-b481-28e81c36300e" width="720" alt="Overview of MPF-LLM">
 
-📄 [**Paper**](https://aclanthology.org/2026.acl-long.2012/) &nbsp;•&nbsp; 📊 [**Dataset (MECESD)**](#-dataset-mecesd) &nbsp;•&nbsp; 🚀 [**Quick Start**](#-installation) &nbsp;•&nbsp; 📝 [**Citation**](#-citation)
+📄 [**Paper**](https://aclanthology.org/2026.acl-long.2012/) &nbsp; &nbsp; 📊 [**Dataset (MECESD)**](#-dataset-mecesd) &nbsp; &nbsp; 🚀 [**Quick Start**](#-installation) &nbsp; &nbsp; 📝 [**Citation**](#-citation)
 
 </div>
 
