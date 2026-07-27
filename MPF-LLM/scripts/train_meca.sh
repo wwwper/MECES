@@ -15,7 +15,7 @@ DEV_BATCH_SIZE=1
 GRAD_ACCUMULATION_STEPS=4
 NUM_TRAIN_EPOCHS=3
 
-BASE_MODEL_PATH="/data/wjk/chatglm3-6b-base"
+BASE_MODEL_PATH="Huggingface/chatglm3-6b-base"
 TRAIN_FILE="./mpf_llm/dataset/finetune_prompt_data/MECES_multimodal_train_finetune.json"
 VIDEO_FEATURES="./mpf_llm/dataset/multimodal_features/video_features.pt"
 AUDIO_FEATURES="./mpf_llm/dataset/multimodal_features/audio_features.pt"
