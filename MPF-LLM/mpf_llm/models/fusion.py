@@ -1,6 +1,7 @@
+# Adapted from MSE-Adapter (https://github.com/AZYoung233/MSE-Adapter/), MIT License.
+
 """
 多模态多层级融合模块 (MultiModal_MLF)。
-
 把一对 (video, audio) 预抽取特征融合成单个伪 token 向量，供注入到 LLM 的 word embedding 序列中。
 """
 
