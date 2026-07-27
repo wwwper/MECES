@@ -1,1 +1,1 @@
-若更换 backbone，需要相应改造其 embedding 注入/替换逻辑，由于chatglm的模型的generate方法不支持embedding输入，所以我们修改了chatglm3-6b-base模型的modeling_chatglm.py文件，对于其它LLM backbone可以直接通过传入inputs_embeds进行Embedding替换。 下载chatglm3-6b-base模型时，请将该文件夹中的modeling_chatglm.py替换原始文件
+若更换 backbone，需要相应改造其 embedding 注入/替换逻辑，由于chatglm的模型的generate方法不支持embedding输入，所以我们修改了chatglm3-6b-base模型的modeling_chatglm.py文件，对于其它LLM backbone可以直接通过传入inputs_embeds进行Embedding替换。 **下载chatglm3-6b-base模型时，请将该文件夹中的modeling_chatglm.py替换原始文件**
