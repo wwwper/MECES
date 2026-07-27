@@ -1,1 +1,11 @@
-若更换 backbone，需要相应改造其 embedding 注入/替换逻辑，由于chatglm的模型的generate方法不支持embedding输入，所以我们修改了chatglm3-6b-base模型的modeling_chatglm.py文件，对于其它LLM backbone可以直接通过传入inputs_embeds进行Embedding替换。 **下载chatglm3-6b-base模型时，请将该文件夹中的modeling_chatglm.py替换原始文件**
+
+If you decide to switch or replace the model **LLM backbone**, you must adapt its embedding injection/replacement logic accordingly:
+
+* **`chatglm3-6b-base`:**  
+  The native `generate()` method in ChatGLM does not natively accept embedding tensors (`inputs_embeds`). To enable embedding replacement, we modified the official `modeling_chatglm.py` file.
+  
+  > ⚠️ **Important Step for ChatGLM3-6B Users:**  
+  > After downloading the official `chatglm3-6b-base` model weights/files, you **must replace** the original `modeling_chatglm.py` in your local model folder with the modified `modeling_chatglm.py` provided in this repository.
+
+* **Other LLM Backbones:**  
+  Most standard LLMs support passing `inputs_embeds` natively. You can perform embedding replacement directly without altering the underlying modeling code.
