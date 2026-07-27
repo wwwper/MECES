@@ -76,8 +76,8 @@ bash scripts/infer_meca.sh
 ```
 
 **评估指标**：MECE 子任务采用加权平均 **F1**；MECS 子任务采用 **BLEU-2 / BLEU-4 / METEOR / ROUGE-L**（词面重叠）以及 **BERTScore / Sentence-BERT**（语义相似度）。
-其中词面重叠指标使用 [nlg-eval](https://github.com/Maluuba/nlg-eval)] 计算 BLEU、METEOR、ROUGE-L等指标。
-BERTScore使用bert-base-chinese模型(中文语料中评估表现最好的，详细参考[https://github.com/Tiiiger/bert_score])，Sentence-BERT使用paraphrase-multilingual-MiniLM-L12-v2。详细请参考代码
+其中词面重叠指标使用 [nlg-eval](https://github.com/Maluuba/nlg-eval) 计算 BLEU、METEOR、ROUGE-L等指标。
+BERTScore使用bert-base-chinese模型(中文语料中评估表现最好的，详细参考[bert_score](https://github.com/Tiiiger/bert_score)，Sentence-BERT使用paraphrase-multilingual-MiniLM-L12-v2。详细请参考代码
 
 ## 💡 说明与注意事项
 
