@@ -43,8 +43,8 @@ pip install -r requirements.txt
 数据放置于 `dataset/`文件路径下
 
 1. **通过data/bulid_finetune_dataset.py构建 训练/验证/测试 的微调数据**：每条样本至少包含
-   - `context`；
-   - `target`；
+   - `context`
+   - `target`
    - `multimodal_features_key_list`：占位符对应的特征 key 列表（顺序与占位符一致）。
 2. **下载的多模态特征 `.pt` ，**：`video_features.pt` / `audio_features.pt`，均为 `{key: tensor}` 字典，`key` 与上面的 `multimodal_features_key_list` 对应。视觉/音频特征分别由 **CLIP ViT-L** 与 **HuBERT-L** 预抽取。
 
@@ -76,8 +76,9 @@ bash scripts/infer_meca.sh
 ```
 
 **评估指标**：MECE 子任务采用加权平均 **F1**；MECS 子任务采用 **BLEU-2 / BLEU-4 / METEOR / ROUGE-L**（词面重叠）以及 **BERTScore / Sentence-BERT**（语义相似度）。
-其中词面重叠指标使用 [nlg-eval](https://github.com/Maluuba/nlg-eval) 计算 BLEU、METEOR、ROUGE-L等指标。
-BERTScore使用bert-base-chinese模型(中文语料中评估表现最好的，详细参考https://github.com/Tiiiger/bert_score)，Sentence-BERT使用paraphrase-multilingual-MiniLM-L12-v2。详细请参考代码
+其中词面重叠指标使用 [nlg-eval](https://github.com/Maluuba/nlg-eval)] 计算 BLEU、METEOR、ROUGE-L等指标。
+BERTScore使用bert-base-chinese模型(中文语料中评估表现最好的，详细参考[https://github.com/Tiiiger/bert_score])，Sentence-BERT使用paraphrase-multilingual-MiniLM-L12-v2。详细请参考代码
+
 ## 💡 说明与注意事项
 
 - **backbone 要求**：若更换 backbone，需要相应改造其 embedding 注入/替换逻辑，由于chatglm的模型的generate方法不支持embedding输入，所以我们修改了对应的modeling_chatglm.py文件，对于其它LLM backbone可以直接通过传入inputs_embeds进行Embedding替换。
