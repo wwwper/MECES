@@ -77,7 +77,7 @@ def calculate_weighted_ece_f1(predictions, ground_truths, emotion_labels):
 
 pred = []
 # 请确保这里的路径是正确的
-with open('/data/wjk/Project/ChatGLM_Project/MPF-LLM/results/pred/MECES_pred.json','r', encoding='utf-8') as file:
+with open('../results/pred/MECES_pred.json','r', encoding='utf-8') as file:
     pred_data = json.load(file)
     for i in range(0, len(pred_data)):
         for j in range(0, len(pred_data[i]["dialog"])):
@@ -87,24 +87,21 @@ with open('/data/wjk/Project/ChatGLM_Project/MPF-LLM/results/pred/MECES_pred.jso
 label = []
 emotions_list = []  # ### 新增：用于存储对应的真实情绪标签 ###
 
-with open('/data/wjk/Project/ChatGLM_Project/MPF-LLM/mpf_llm/dataset/MECESD_test.json', 'r', encoding='utf-8') as file:
+with open('../mpf_llm/dataset/MECESD_test.json', 'r', encoding='utf-8') as file:
     label_data = json.load(file)
     for i in range(0, len(label_data)):
         for j in range(0, len(label_data[i]["dialog"])):
             if label_data[i]["dialog"][j]["Emotion"] != "Neutral" and label_data[i]["dialog"][j]["Cause_utterance"] != ["无法标注"]:
                 label.append(label_data[i]["dialog"][j]["Cause_utterance"])
-                # ### 修改：同时读取情绪标签 ###
                 # 注意：这里读取的是Dataset(Ground Truth)里的情绪，这是计算权重的标准
                 emotions_list.append(label_data[i]["dialog"][j]["Emotion"])
 
 # ================= 计算与输出 =================
 
-# 1. 原有的 Micro F1
+
 p, r, f1 = calculate_ece_f1(pred, label)
 print(f"Global Precision: {p:.4f}, Recall: {r:.4f}, Micro F1: {f1:.4f}")
 
-# 2. ### 新增：Weighted F1 计算 ###
-# 确保列表长度一致，防止文件读取逻辑出错导致未对齐
 assert len(pred) == len(label) == len(emotions_list), "错误：预测值、真实值或情绪标签的数量不一致！"
 
 w_f1 = calculate_weighted_ece_f1(pred, label, emotions_list)
