@@ -80,16 +80,7 @@ dataset/
 bash scripts/train_meca.sh
 ```
 
-**Default hyperparameters** (corresponding to Appendix A.10 of the paper):
-
-| Setting | Value |
-| --- | --- |
-| Epochs | 3 |
-| Learning rate | 1e-4 |
-| Per-device batch size | 1 |
-| Gradient accumulation | 4 |
-| LoRA `r` / `α` / `dropout` | 8 / 32 / 0.1 |
-| Context window | `window(8, 3)` |
+**Default hyperparameters** (corresponding to Appendix A.10 of the paper and Please refer to the source code for the full list.):
 
 > Experiments were conducted on **32GB V100** / **40GB A100** GPUs.
 
