@@ -56,9 +56,10 @@ dataset/
 └── multimodal_features/
     ├── video_features.pt
     └── audio_features.pt
-└── multimodal_features/
-    ├── video_features.pt
-    └── audio_features.pt
+└── finetune_prompt_data/
+    ├── MECES_multimodal_train_finetune.json
+    ├── MECES_multimodal_val_finetune.json
+    └──MECES_multimodal_test_finetune.json
 ```
 
 ## 🚀 训练
