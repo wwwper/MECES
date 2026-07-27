@@ -17,7 +17,6 @@
 This repository is the **official implementation** of the paper **"Locate and Explain: Joint Multimodal Emotion Cause Extraction and Summarization in Conversation"** (ACL 2026, Long Papers). It provides the **MECESD dataset** together with the complete training and inference code for the **MPF-LLM model**.
 
 | | |
-| --- | --- |
 | **Authors** | Jikun Wan, Chen Gong\*, Guohong Fu &nbsp;(\* Corresponding author) |
 | **Affiliation** | Institute of Artificial Intelligence / School of Computer Science and Technology, Soochow University |
 | **Venue** | ACL 2026 (Long Papers), pp. 43472–43489 |
