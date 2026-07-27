@@ -29,33 +29,8 @@
 数据集将按如下方式提供（请根据实际发布情况替换链接）：
 
 ```bash
-# 下载标注 json 与预抽取多模态特征，放入 data/ 目录
-# <此处填写你的数据集下载链接，例如 Google Drive / 百度网盘 / HuggingFace Datasets>
-```
-
-
-## 📁 目录结构
-
-```
-MPF-LLM/
-├── README.md
-├── LICENSE
-├── requirements.txt
-├── .gitignore
-├── scripts/
-│   ├── train_meca.sh          # 训练启动脚本
-│   └── infer_meca.sh          # 推理启动脚本
-└── mpf_llm/                   
-    ├── arguments.py           # ModelArguments / DataTrainingArguments
-    ├── trainer.py             # LoRATrainer（自定义 compute_loss 与 save_model）
-    ├── train.py               # 训练入口（python -m mpf_llm.train）
-    ├── inference.py           # 推理入口（python -m mpf_llm.inference）
-    ├── data/
-    │   ├── dataset.py         # InputOutputDataset + 特征加载
-    │   └── collator.py        # MultimodalDataCollator
-    └── models/
-        ├── fusion.py          # Integrating / MultiScaleFusion / MultiModal_MLF
-        └── modeling_mpf_llm.py# MPF_LLM 复合模型
+# 下载数据集对应的视频，或者直接使用提取的视频、音频特征放入 dataset/multimodal_features文件路径
+# https://drive.google.com/drive/folders/1FE8XMR6n0tOraedwU2r0qmLpKD1jI94z?usp=drive_link
 ```
 
 ## ⚙️ 安装
